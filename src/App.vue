@@ -1,23 +1,19 @@
 <template>
   <div id="app">
-    <div class="starship" v-for="starship in starships" :key="starship.url">
+    <div class="starship" v-for="starship in starshipsList" :key="starship.url">
       <h2>{{starship.name}}</h2>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex"
 export default {
   name: 'App',
-  data() {
-    return {
-      starships: []
-    };
-  },
+  computed: mapGetters(["starshipsList"]),
+  methods: mapActions(["fetchStarships"]),
   async mounted() {
-    const res = await fetch("https://swapi.co/api/starships/");
-    const starships = await res.json();
-    this.starships = starships.results;
+    this.fetchStarships();
   }
 }
 </script>
