@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <SearchForm />
+    <hr />
     <div class="starship" v-for="starship in starshipsList" :key="starship.url">
       <h2>{{starship.name}}</h2>
     </div>
@@ -8,10 +10,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex"
+import SearchForm from "./components/SearchForm";
 export default {
   name: 'App',
   computed: mapGetters(["starshipsList"]),
   methods: mapActions(["fetchStarships"]),
+  components: { SearchForm },
   async mounted() {
     this.fetchStarships();
   }
