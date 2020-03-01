@@ -1,7 +1,7 @@
 <template>
 	<div class="pagination">
-		<button v-on:click="go(previousLink)">Назад</button>
-		<button v-on:click="go(nextLink)">Вперед</button>
+		<button :disabled="!previousLink" v-on:click="go(previousLink)">Назад</button>
+		<button :disabled="!nextLink" v-on:click="go(nextLink)">Вперед</button>
 	</div>
 </template>
 
