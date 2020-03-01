@@ -2,8 +2,15 @@
   <div id="app">
     <SearchForm />
     <hr />
-    <div class="starship" v-for="starship in starshipsList" :key="starship.url">
-      <h2>{{starship.name}}</h2>
+    <div class="starships" v-for="starship in starshipsList" :key="starship.url">
+        <h2 v-on:click="starship.show = !starship.show">{{starship.name}}</h2>
+        <transition name="fade">
+          <div class="list" v-if="starship.show">
+            <div v-for="(value, name) in starship" v-bind:key="name">
+              <template><em>{{ name }}: </em>{{ value }}</template>
+            </div>
+          </div>
+        </transition>
     </div>
   </div>
 </template>
@@ -33,9 +40,13 @@ export default {
   width: 400px;
 }
 
-.starship {
+.starships {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 1rem;
+}
+.list {
+  text-align: left;
+  margin: 1rem;
 }
 </style>

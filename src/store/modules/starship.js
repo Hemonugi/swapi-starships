@@ -19,6 +19,12 @@ export default {
 	},
 	mutations: {
 		updateStarships(state, starships) {
+			starships.map(function(starship) {
+				starship['show'] = false;
+
+				return starship;
+			});
+
 			state.starships = starships;
 		},
 	},
