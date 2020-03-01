@@ -13,9 +13,9 @@ export default {
 		};
 	},
 	methods: {
-		...mapActions(['fetchStarshipsByValue']),
+		...mapActions(['getByValue']),
 		search() {
-			this.fetchStarshipsByValue(this.string);
+			this.getByValue(this.string);
 		}
 	}
 }

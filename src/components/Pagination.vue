@@ -1,20 +1,19 @@
 <template>
-	<div class="pagination" v-if="true">
+	<div class="pagination">
 		<button v-on:click="go(previousLink)">Назад</button>
 		<button v-on:click="go(nextLink)">Вперед</button>
 	</div>
 </template>
 
 <script>
-	import {mapActions} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
 	props: ["previousLink", "nextLink"],
 	methods: {
-		...mapActions(['fetchStarshipsByUrl']),
+		...mapActions(['getByUrl']),
 		go(url) {
-			console.log(url);
-			this.fetchStarshipsByUrl(url);
+			this.getByUrl(url);
 		}
 	}
 }

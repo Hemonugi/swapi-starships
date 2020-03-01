@@ -2,12 +2,14 @@
   <div id="app">
     <SearchForm />
     <hr />
-    <div class="starships" v-for="starship in starshipsList" :key="starship.url">
+    <div class="starships" v-for="starship in starshipsList" :key="starship.name">
         <h2 v-on:click="starship.show = !starship.show">{{starship.name}}</h2>
         <transition name="fade">
           <div class="list" v-if="starship.show">
-            <div v-for="(value, name) in starship" v-bind:key="name">
-              <template><em>{{ name }}: </em>{{ value }}</template>
+            <div v-for="(value, name) in starship" :key="name">
+              <template>
+                  <b>{{ name }}: </b>{{ value }}
+              </template>
             </div>
           </div>
         </transition>
@@ -23,10 +25,10 @@ import Pagination from "./components/Pagination";
 export default {
   name: 'App',
   computed: mapGetters(["starshipsList", "previousList", "nextList"]),
-  methods: mapActions(["fetchStarships"]),
+  methods: mapActions(["getAll"]),
   components: { SearchForm, Pagination },
   async mounted() {
-    this.fetchStarships();
+    this.getAll();
   }
 }
 </script>

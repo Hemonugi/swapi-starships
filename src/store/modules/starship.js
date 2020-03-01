@@ -1,30 +1,16 @@
 export default {
 	actions: {
-		async fetchStarships(ctx) {
-			const res = await fetch("https://swapi.co/api/starships/");
-			const starships = await res.json();
-			this.starships = starships.results;
-
-			ctx.commit('updateStarships', starships);
+		async getAll(ctx) {
+			const starships = await fetch("https://swapi.co/api/starships/");
+			ctx.commit('updateStarships', await starships.json());
 		},
-		async fetchStarshipsByValue(ctx, string) {
-			const res = await fetch(
-				"https://swapi.co/api/starships/?search=" + string
-			);
-			const starships = await res.json();
-			this.starships = starships.results;
-
-			ctx.commit('updateStarships', starships);
+		async getByValue(ctx, string) {
+			const starships = await fetch("https://swapi.co/api/starships/?search=" + string);
+			ctx.commit('updateStarships', await starships.json());
 		},
-		async fetchStarshipsByUrl(ctx, url) {
-			const res = await fetch(url);
-			const starships = await res.json();
-
-			this.previousList = starships.previous;
-			this.nextList = starships.next;
-			this.starships = starships.results;
-
-			ctx.commit('updateStarships', starships);
+		async getByUrl(ctx, url) {
+			const starships = await fetch(url);
+			ctx.commit('updateStarships', await starships.json());
 		}
 	},
 	mutations: {
