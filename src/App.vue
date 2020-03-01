@@ -12,17 +12,19 @@
           </div>
         </transition>
     </div>
+    <Pagination :previousLink="previousList" :nextLink="nextList"/>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex"
 import SearchForm from "./components/SearchForm";
+import Pagination from "./components/Pagination";
 export default {
   name: 'App',
-  computed: mapGetters(["starshipsList"]),
+  computed: mapGetters(["starshipsList", "previousList", "nextList"]),
   methods: mapActions(["fetchStarships"]),
-  components: { SearchForm },
+  components: { SearchForm, Pagination },
   async mounted() {
     this.fetchStarships();
   }
