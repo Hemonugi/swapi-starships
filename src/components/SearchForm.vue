@@ -9,13 +9,18 @@ import { mapActions } from "vuex"
 export default {
 	data() {
 		return {
-			string: ''
+			string: '',
+			timerId: null
 		};
 	},
 	methods: {
 		...mapActions(['getByValue']),
 		search() {
-			this.getByValue(this.string);
+			var ctx = this;
+			if (this.timerId !== null) {
+				clearTimeout(this.timerId);
+			}
+			this.timerId = setTimeout(function() { return ctx.getByValue(ctx.string) }, 1000);
 		}
 	}
 }
