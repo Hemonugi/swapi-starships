@@ -20,7 +20,7 @@ export default {
 			if (this.timerId !== null) {
 				clearTimeout(this.timerId);
 			}
-			this.timerId = setTimeout(function() { return ctx.getByValue(ctx.string) }, 1000);
+			this.timerId = setTimeout(function() { return ctx.getByValue(ctx.string) }, 500);
 		}
 	}
 }
